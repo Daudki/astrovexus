@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react"
+import { useSearchParams } from "react-router-dom"
 import { Mail, MapPin, Phone } from "lucide-react"
 import { studio } from "@/content"
 
@@ -7,6 +8,8 @@ type FormStatus = "idle" | "submitting" | "success" | "error"
 export default function Contact() {
   const [status, setStatus] = useState<FormStatus>("idle")
   const [error, setError] = useState("")
+  const [searchParams] = useSearchParams()
+  const estimate = searchParams.get("estimate") ?? ""
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -215,6 +218,7 @@ export default function Contact() {
                 required
                 rows={5}
                 name="message"
+                defaultValue={estimate}
                 disabled={isSubmitting}
                 className="w-full px-4 py-3 rounded-lg bg-white border border-black/10 text-ink focus:border-royal focus:outline-none transition-colors resize-none disabled:opacity-60"
               />

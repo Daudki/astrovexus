@@ -8,6 +8,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton"
 
 const Home     = lazy(() => import("@/pages/Home"))
 const Services = lazy(() => import("@/pages/Services"))
+const Pricing  = lazy(() => import("@/pages/Pricing"))
 const About    = lazy(() => import("@/pages/About"))
 const Contact  = lazy(() => import("@/pages/Contact"))
 const NotFound = lazy(() => import("@/pages/NotFound"))
@@ -31,6 +32,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/pricing" element={<Pricing />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />

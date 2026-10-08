@@ -10,6 +10,7 @@ export const studio = {
 
 export const nav = [
   { label: "What we do", href: "/services" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Who we are", href: "/about" },
   { label: "Contact", href: "/contact" },
 ]
