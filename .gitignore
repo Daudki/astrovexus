@@ -66,3 +66,4 @@ logs/
 
 # Termux / Android
 .storage/
+*.tsbuildinfo
