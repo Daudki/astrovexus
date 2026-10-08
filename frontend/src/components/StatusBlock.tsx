@@ -12,7 +12,7 @@ const items = [
   {
     num: "03",
     title: "First clients get our best",
-    body: "If you hire us now, you get founders who are building their reputation — and it shows.",
+    body: "If you hire us now, you get founders who are building their reputation, and it shows.",
   },
 ]
 

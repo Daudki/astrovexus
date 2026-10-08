@@ -35,7 +35,7 @@ export class ErrorBoundary extends Component<Props, State> {
             </h1>
             <p className="text-black/60 leading-relaxed mb-8">
               We hit an unexpected error while rendering this page. Try
-              reloading — and if it persists, please tell us.
+              reloading, and if it persists, please tell us.
             </p>
             <a
               href="/"

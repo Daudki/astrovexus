@@ -4,6 +4,7 @@ import { ServicesBento } from "@/components/ServicesBento"
 import { StatusBlock } from "@/components/StatusBlock"
 import { Founders } from "@/components/Founders"
 import { FAQ } from "@/components/FAQ"
+import { NewsletterSignup } from "@/components/NewsletterSignup"
 import { CTA } from "@/components/CTA"
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <StatusBlock />
       <Founders />
       <FAQ />
+      <NewsletterSignup />
       <CTA />
     </>
   )

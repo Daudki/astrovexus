@@ -5,7 +5,7 @@ export const studio = {
   phone: "+255 625 596 269",
   phoneHref: "+255625596269",
   blurb:
-    "A new studio in Tanzania. Two founders — a programmer and a designer — building real software, honest brands, and the products we wish existed here.",
+    "A new studio in Tanzania. Two founders, a programmer and a designer, building real software, honest brands, and the products we wish existed here.",
 }
 
 export const nav = [
@@ -31,7 +31,7 @@ export const services = [
     key: "ai",
     icon: "Sparkles",
     title: "AI & Automation",
-    body: "Practical AI integrations — assistants, classifiers, and local-model setups you can actually run.",
+    body: "Practical AI integrations: assistants, classifiers, and local-model setups you can actually run.",
   },
   {
     key: "edtech",
@@ -48,7 +48,7 @@ export const founders = [
     initials: "DK",
     photo: "/team/daudi.jpg",
     skills: ["Linux", "Web development", "AI & machine learning"],
-    bio: "I write code. Linux is my daily environment, web development is my craft, and AI and machine learning are what I am learning next. I am not the finished article — I am still learning, and I say so.",
+    bio: "I write code. Linux is my daily environment, web development is my craft, and AI and machine learning are what I am learning next. I am not the finished article. I am still learning, and I say so.",
   },
   {
     name: "Mike Milan",
@@ -90,7 +90,7 @@ export const verticals = [
 
 export const faqs = [
   {
-    q: "You don't have a portfolio yet — why should I trust you?",
+    q: "You don't have a portfolio yet. Why should I trust you?",
     a: "Because we tell you that upfront instead of hiding it. You get two people building their name on your project, which means it gets more attention, not less.",
   },
   {
@@ -99,7 +99,7 @@ export const faqs = [
   },
   {
     q: "How long does a typical project take?",
-    a: "Small sites and tools can ship in one to two weeks. Larger builds take longer — we'll give you a real timeline once we know the scope.",
+    a: "Small sites and tools can ship in one to two weeks. Larger builds take longer, and we'll give you a real timeline once we know the scope.",
   },
   {
     q: "Do you work with clients outside your area?",
@@ -107,7 +107,7 @@ export const faqs = [
   },
   {
     q: "What if I need changes after the project ships?",
-    a: "We stick around for fixes and support after launch — that's part of how we work, not an extra ask.",
+    a: "We stick around for fixes and support after launch. That's part of how we work, not an extra ask.",
   },
   {
     q: "How do I start?",

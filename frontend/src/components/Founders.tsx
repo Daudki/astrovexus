@@ -15,9 +15,9 @@ export function Founders() {
         {founders.map((f, i) => (
           <BlurFade key={f.name} delay={i * 0.1}>
             <article className="rounded-3xl bg-light/60 border border-black/5 overflow-hidden">
-              {/* Photo frame — portrait aspect, crop anchored to top so heads are never cut */}
+              {/* Photo frame: portrait aspect, crop anchored to top so heads are never cut */}
               <div className="relative w-full aspect-[4/5] bg-gradient-to-br from-royal/15 via-lilac/30 to-royal/10">
-                {/* Initials fallback — always rendered, sits behind the image */}
+                {/* Initials fallback: always rendered, sits behind the image */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="font-display font-extrabold text-6xl md:text-7xl text-royal/30 select-none">
                     {f.initials}

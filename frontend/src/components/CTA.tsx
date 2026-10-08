@@ -46,7 +46,7 @@ export function CTA() {
           <div className="mt-6 flex items-start gap-2.5 text-sm text-white/70">
             <ShieldCheck size={18} className="shrink-0 mt-0.5" />
             <span>
-              Our guarantee: if the first delivery misses the brief, we fix it — free, no debate.
+              Our guarantee: if the first delivery misses the brief, we fix it for free, no debate.
             </span>
           </div>
         </div>

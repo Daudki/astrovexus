@@ -47,7 +47,7 @@ export default function About() {
           Here first. Then the rest of it.
         </h2>
         <p className="text-black/60 text-lg max-w-2xl leading-relaxed mb-10">
-          We are starting with software, design, AI, and education tools. As the studio grows, these are the areas we plan to work in. Not promises — just the direction we're heading.
+          We are starting with software, design, AI, and education tools. As the studio grows, these are the areas we plan to work in. Not promises, just the direction we're heading.
         </p>
         <div className="border-y border-black/5 py-8 overflow-hidden">
           <Marquee pauseOnHover duration="22s">
