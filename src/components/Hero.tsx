@@ -27,7 +27,7 @@ export function Hero() {
           </div>
 
           <h1 className="font-display font-extrabold text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight text-ink">
-            <TextGenerate words="A new studio in Mbeya. Building real software." />
+            <TextGenerate words="A new studio in Tanzania. Building real software." />
           </h1>
 
           <p className="mt-8 text-lg md:text-xl text-black/60 max-w-2xl leading-relaxed">

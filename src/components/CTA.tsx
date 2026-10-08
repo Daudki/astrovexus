@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ArrowUpRight, Phone } from "lucide-react"
+import { ArrowUpRight, Phone, ShieldCheck } from "lucide-react"
 import { MovingBorderButton } from "@/components/ui"
 import { studio } from "@/content"
 
@@ -41,6 +41,13 @@ export function CTA() {
             >
               {studio.email}
             </a>
+          </div>
+
+          <div className="mt-6 flex items-start gap-2.5 text-sm text-white/70">
+            <ShieldCheck size={18} className="shrink-0 mt-0.5" />
+            <span>
+              Our guarantee: if the first delivery misses the brief, we fix it — free, no debate.
+            </span>
           </div>
         </div>
       </div>

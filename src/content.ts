@@ -1,11 +1,11 @@
 export const studio = {
   name: "AstroVexus",
-  place: "Mbeya, Tanzania",
+  place: "Tanzania",
   email: "daudki044@gmail.com",
   phone: "+255 625 596 269",
   phoneHref: "+255625596269",
   blurb:
-    "A new studio in Mbeya. Two founders — a programmer and a designer — building real software, honest brands, and the products we wish existed here.",
+    "A new studio in Tanzania. Two founders — a programmer and a designer — building real software, honest brands, and the products we wish existed here.",
 }
 
 export const nav = [
@@ -75,7 +75,7 @@ export const values = [
   },
   {
     title: "We build for here",
-    body: "Mbeya first. Then the rest of Tanzania. Then wherever the work takes us.",
+    body: "Tanzania first. Then wherever the work takes us.",
   },
 ]
 
@@ -87,6 +87,33 @@ export const verticals = [
   "Fintech & commerce",
   "EdTech",
 ]
+
+export const faqs = [
+  {
+    q: "You don't have a portfolio yet — why should I trust you?",
+    a: "Because we tell you that upfront instead of hiding it. You get two people building their name on your project, which means it gets more attention, not less.",
+  },
+  {
+    q: "How much does a project cost?",
+    a: "It depends on the scope. We talk, we understand what you need, then we write a price and timeline down before any work starts. No surprises later.",
+  },
+  {
+    q: "How long does a typical project take?",
+    a: "Small sites and tools can ship in one to two weeks. Larger builds take longer — we'll give you a real timeline once we know the scope.",
+  },
+  {
+    q: "Do you work with clients outside your area?",
+    a: "Yes. The work travels. Most of what we build is remote-friendly from day one.",
+  },
+  {
+    q: "What if I need changes after the project ships?",
+    a: "We stick around for fixes and support after launch — that's part of how we work, not an extra ask.",
+  },
+  {
+    q: "How do I start?",
+    a: "Send us a message with what you're working on. We'll ask questions until we both understand it properly, then send you a written scope.",
+  },
+] as const
 
 export const process = [
   { step: "01", title: "Talk", body: "You describe the problem. We ask questions until we both understand it properly." },

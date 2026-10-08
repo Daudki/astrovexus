@@ -11,7 +11,7 @@ export default function About() {
           About
         </div>
         <h1 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-ink max-w-4xl leading-[1.05]">
-          Two people in Mbeya. One studio, starting from zero.
+          Two people. One studio, starting from zero.
         </h1>
         <p className="mt-6 text-black/60 text-lg max-w-2xl leading-relaxed">
           AstroVexus is new. We have no client portfolio to show you yet, and we are not going to invent one. What we have is two people with real skills, a clear plan, and enough nerve to build something here instead of waiting for somewhere else.
@@ -44,7 +44,7 @@ export default function About() {
           Where we're going
         </div>
         <h2 className="font-display font-extrabold text-3xl md:text-5xl text-ink max-w-3xl leading-tight mb-6">
-          Mbeya first. Then the rest of it.
+          Here first. Then the rest of it.
         </h2>
         <p className="text-black/60 text-lg max-w-2xl leading-relaxed mb-10">
           We are starting with software, design, AI, and education tools. As the studio grows, these are the areas we plan to work in. Not promises — just the direction we're heading.

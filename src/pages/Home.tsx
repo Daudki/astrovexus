@@ -3,6 +3,7 @@ import { ServiceMarquee } from "@/components/ServiceMarquee"
 import { ServicesBento } from "@/components/ServicesBento"
 import { StatusBlock } from "@/components/StatusBlock"
 import { Founders } from "@/components/Founders"
+import { FAQ } from "@/components/FAQ"
 import { CTA } from "@/components/CTA"
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <ServicesBento />
       <StatusBlock />
       <Founders />
+      <FAQ />
       <CTA />
     </>
   )

@@ -61,7 +61,7 @@ export function Footer() {
       <div className="border-t border-white/5">
         <div className="wrap py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
           <span>© {new Date().getFullYear()} {studio.name}</span>
-          <span>Built in Mbeya.</span>
+          <span>Built in {studio.place}.</span>
         </div>
       </div>
     </footer>
