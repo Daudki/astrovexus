@@ -1,12 +1,16 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
-import { useEffect } from "react"
+import { lazy, Suspense, useEffect } from "react"
 import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
+import { ErrorBoundary } from "@/components/ErrorBoundary"
+import { Loader } from "@/components/Loader"
 import { WhatsAppButton } from "@/components/WhatsAppButton"
-import Home from "@/pages/Home"
-import Services from "@/pages/Services"
-import About from "@/pages/About"
-import Contact from "@/pages/Contact"
+
+const Home     = lazy(() => import("@/pages/Home"))
+const Services = lazy(() => import("@/pages/Services"))
+const About    = lazy(() => import("@/pages/About"))
+const Contact  = lazy(() => import("@/pages/Contact"))
+const NotFound = lazy(() => import("@/pages/NotFound"))
 
 function ScrollTop() {
   const { pathname } = useLocation()
@@ -22,12 +26,17 @@ export default function App() {
       <ScrollTop />
       <Nav />
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <ErrorBoundary>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
       </main>
       <Footer />
       <WhatsAppButton />
