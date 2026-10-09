@@ -34,6 +34,6 @@ cd backend && cp .env.example .env && npm install && npm run dev
 
 ## Contact
 
-daudki044@gmail.com · +255 625 596 269
+astrovexus@gmail.com · +255 625 596 269
 
 Built in Mbeya.

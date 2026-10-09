@@ -1,7 +1,7 @@
 export const studio = {
   name: "AstroVexus",
   place: "Tanzania",
-  email: "daudki044@gmail.com",
+  email: "astrovexus@gmail.com",
   phone: "+255 625 596 269",
   phoneHref: "+255625596269",
   blurb:
