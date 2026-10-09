@@ -10,21 +10,20 @@ export interface Subscriber {
   lang: Lang
 }
 
-/** Store the subscriber (Resend Audience) and send the autoresponder. */
+/** Store the subscriber (Resend Contacts) and send the autoresponder. */
 export async function subscribe({ email, name, lang }: Subscriber) {
   if (!resend) {
     console.log(`[dry-run] subscribe ${email} (${lang})`)
     return
   }
 
-  if (env.RESEND_AUDIENCE_ID) {
-    const { error } = await resend.contacts.create({
-      email,
-      firstName: name,
-      audienceId: env.RESEND_AUDIENCE_ID,
-    })
-    if (error) throw new Error(`Resend contacts.create failed: ${error.message}`)
-  }
+  // Contacts are global in Resend. A segment is optional, for your own organization.
+  const { error: contactError } = await resend.contacts.create({
+    email,
+    firstName: name,
+    segments: env.RESEND_SEGMENT_ID ? [{ id: env.RESEND_SEGMENT_ID }] : undefined,
+  })
+  if (contactError) throw new Error(`Resend contacts.create failed: ${contactError.message}`)
 
   const mail = welcomeEmail(lang, name)
   const { error } = await resend.emails.send({

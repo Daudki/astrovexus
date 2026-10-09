@@ -6,7 +6,7 @@ const schema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
   FRONTEND_ORIGIN: z.string().default("http://localhost:5173"),
   RESEND_API_KEY: z.string().optional().default(""),
-  RESEND_AUDIENCE_ID: z.string().optional().default(""),
+  RESEND_SEGMENT_ID: z.string().optional().default(""),
   MAIL_FROM: z.string().default("AstroVexus <onboarding@resend.dev>"),
   MAIL_REPLY_TO: z.string().optional().default(""),
 })
