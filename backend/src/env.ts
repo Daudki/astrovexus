@@ -1,14 +1,28 @@
 import "dotenv/config"
+import { randomBytes } from "node:crypto"
 import { z } from "zod"
 
 const schema = z.object({
   PORT: z.coerce.number().default(4000),
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
   FRONTEND_ORIGIN: z.string().default("http://localhost:5173"),
+
+  // Email (Resend)
   RESEND_API_KEY: z.string().optional().default(""),
   RESEND_SEGMENT_ID: z.string().optional().default(""),
   MAIL_FROM: z.string().default("AstroVexus <onboarding@resend.dev>"),
   MAIL_REPLY_TO: z.string().optional().default(""),
+
+  // Database and auth
+  DATABASE_URL: z.string().min(1, "DATABASE_URL is required"),
+  DATABASE_SSL: z.enum(["true", "false"]).optional(),
+  JWT_SECRET: z.string().optional().default(""),
+  JWT_EXPIRES_IN: z.string().default("12h"),
+
+  // Used once, to create the first admin when the users table is empty.
+  ADMIN_EMAIL: z.string().optional().default(""),
+  ADMIN_NAME: z.string().optional().default("Admin"),
+  ADMIN_PASSWORD: z.string().optional().default(""),
 })
 
 const parsed = schema.safeParse(process.env)
@@ -24,3 +38,12 @@ if (dryRun && env.NODE_ENV === "production") {
   console.error("RESEND_API_KEY is required in production.")
   process.exit(1)
 }
+
+if (env.NODE_ENV === "production" && env.JWT_SECRET.length < 32) {
+  console.error("JWT_SECRET must be set to a random string of at least 32 characters in production.")
+  process.exit(1)
+}
+
+// In development a missing secret gets a random one per run (logins reset on restart).
+export const jwtSecret = env.JWT_SECRET || randomBytes(32).toString("hex")
+if (!env.JWT_SECRET) console.warn("JWT_SECRET not set: using a temporary secret for this run.")

@@ -23,14 +23,27 @@ A new software studio in Mbeya, Tanzania. Two founders, a programmer and a desig
 # frontend (http://localhost:5173)
 cd frontend && cp .env.example .env && npm install && npm run dev
 
-# backend (http://localhost:4000), runs in dry-run mode without a Resend key
-cd backend && cp .env.example .env && npm install && npm run dev
+# database (PostgreSQL 16 in Docker), then the backend (http://localhost:4000)
+# Emails run in dry-run mode without a Resend key. The first admin is created from ADMIN_* in .env.
+cd backend && docker compose up -d && cp .env.example .env
+# set ADMIN_PASSWORD in .env (10+ characters), then:
+npm install && npm run dev
+
+# optional end-to-end check of login, users and insights against the running API
+API=http://localhost:4000 ADMIN_EMAIL=... ADMIN_PASSWORD=... npm run smoke
 ```
+
+## Insights and the admin area
+
+- `/insights` is public: a social-style feed of short posts (up to 2000 characters, links and #hashtags highlighted). Each post has its own page at `/insights/:id`.
+- `/admin` is for the team only, so there is no public link to it. People sign in at `/admin/login`.
+- **Admin** can add people, make someone an Admin or a User, reset passwords, disable accounts, and delete any post. **User** can write, edit and delete their own posts.
+- New people get a one-time temporary password and must choose their own at first sign-in.
 
 ## Deployment
 
 - **Frontend (Vercel):** set the project's Root Directory to `frontend`. Env vars: `VITE_WEB3FORMS_KEY`, `VITE_API_URL` (public URL of the backend). Redeploy after changing them.
-- **Backend (Render, Railway or Fly):** root directory `backend`, build `npm install && npm run build`, start `npm start`. Env vars: see `backend/.env.example`. Set `FRONTEND_ORIGIN` to the site URL so CORS allows it.
+- **Backend (Render, Railway or Fly):** root directory `backend`, build `npm install && npm run build`, start `npm start`. Use build command `npm ci --include=dev && npm run build` on Render. Env vars: see `backend/.env.example`. Set `FRONTEND_ORIGIN` to the site URL so CORS allows it, `DATABASE_URL` to a PostgreSQL database, and a long random `JWT_SECRET`. Tables are created automatically on start.
 
 ## Contact
 
