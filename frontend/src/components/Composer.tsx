@@ -154,30 +154,32 @@ export function Composer({ authorName, onPosted }: Props) {
         {error && <div role="alert" className="mt-2 text-sm text-red-700">{error}</div>}
         {failed && !error && <div className="mt-2 text-sm text-red-700">Remove the image that failed, then post.</div>}
 
-        <div className="mt-3 flex items-center justify-between gap-3 border-t border-black/10 pt-3">
-          <div className="flex items-center gap-3">
-            <input ref={fileRef} type="file" accept={ACCEPT_ATTR} multiple onChange={addFiles} className="hidden" aria-label="Choose images" />
-            <button
-              type="button"
-              onClick={() => fileRef.current?.click()}
-              disabled={busy || attachments.length >= MAX_IMAGES}
-              aria-label="Add images"
-              className="inline-flex items-center gap-1.5 text-royal disabled:opacity-40"
-            >
-              <ImagePlus size={20} />
-              {attachments.length > 0 && <span className="font-mono text-xs">{attachments.length}/{MAX_IMAGES}</span>}
-            </button>
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-t border-black/10 pt-3">
+          <input ref={fileRef} type="file" accept={ACCEPT_ATTR} multiple onChange={addFiles} className="hidden" aria-label="Choose images" />
+          <button
+            type="button"
+            onClick={() => fileRef.current?.click()}
+            disabled={busy || attachments.length >= MAX_IMAGES}
+            aria-label={attachments.length > 0 ? `Add images, ${attachments.length} of ${MAX_IMAGES} attached` : "Add images"}
+            className="inline-flex h-11 items-center gap-2 rounded-full bg-royal/10 pl-3 pr-4 text-sm font-medium text-royal transition-colors hover:bg-royal/15 active:bg-royal/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal disabled:cursor-not-allowed disabled:bg-black/5 disabled:text-black/30"
+          >
+            <ImagePlus size={20} />
+            <span>Photo</span>
+            {attachments.length > 0 && <span className="font-mono text-xs opacity-70">{attachments.length}/{MAX_IMAGES}</span>}
+          </button>
+
+          <div className="ml-auto flex items-center gap-3">
             <span className={`font-mono text-xs ${remaining < 0 ? "text-red-700" : remaining < 100 ? "text-amber-700" : "text-black/40"}`}>
               {remaining}
             </span>
+            <button
+              type="submit"
+              disabled={!canPost}
+              className="h-11 px-6 rounded-full bg-ink text-white text-sm font-medium hover:bg-royal transition-colors disabled:opacity-40 disabled:hover:bg-ink"
+            >
+              {busy ? "Posting..." : uploading ? "Uploading..." : "Post"}
+            </button>
           </div>
-          <button
-            type="submit"
-            disabled={!canPost}
-            className="h-10 px-6 rounded-full bg-ink text-white text-sm font-medium hover:bg-royal transition-colors disabled:opacity-40 disabled:hover:bg-ink"
-          >
-            {busy ? "Posting..." : uploading ? "Uploading..." : "Post"}
-          </button>
         </div>
       </div>
     </form>
