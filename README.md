@@ -39,6 +39,7 @@ API=http://localhost:4000 ADMIN_EMAIL=... ADMIN_PASSWORD=... npm run smoke
 - `/admin` is for the team only, so there is no public link to it. People sign in at `/admin/login`.
 - **Admin** can add people, make someone an Admin or a User, reset passwords, disable accounts, and delete any post. **User** can write, edit and delete their own posts.
 - New people get a one-time temporary password and must choose their own at first sign-in.
+- Posts can have up to 4 images (JPG, PNG, WebP or GIF). Photos are shrunk in the browser before upload and stored on Cloudinary, so set the `CLOUDINARY_*` variables on the backend. Without them everything else works and image uploads are simply off.
 
 ## Deployment
 

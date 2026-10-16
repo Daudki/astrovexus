@@ -105,5 +105,58 @@ check("admin can reset a password", reset.status === 200 && reset.data.temporary
 const rLogin = await call("POST", "/api/auth/login", { body: { email: friendEmail, password: reset.data.temporaryPassword } })
 check("reset password forces a change again", rLogin.data.user?.mustChangePassword === true)
 
+// Images (needs CLOUDINARY_* set on the API; set CLOUDINARY_API_SECRET here too to verify signatures)
+check("upload signing requires login", (await call("POST", "/api/uploads/sign")).status === 401)
+const adminToken = (await call("POST", "/api/auth/login", { body: { email: ADMIN_EMAIL, password: ADMIN_PASSWORD } })).data.token
+const ticket = await call("POST", "/api/uploads/sign", { token: adminToken })
+if (ticket.status === 503) {
+  console.log("SKIP  image checks: Cloudinary is not configured on this API")
+} else {
+  const t = ticket.data
+  check("upload ticket has what the browser needs", ticket.status === 200 && t.uploadUrl?.includes("/image/upload") && t.apiKey && t.signature && t.folder && t.timestamp, JSON.stringify(t))
+  const adminId = login.data.user.id
+  check("uploads go to the person's own folder", t.folder?.endsWith(`/${adminId}`))
+  if (process.env.CLOUDINARY_API_SECRET) {
+    const { createHash } = await import("node:crypto")
+    const payload = `allowed_formats=${t.allowed_formats}&folder=${t.folder}&timestamp=${t.timestamp}`
+    const expected = createHash("sha1").update(payload + process.env.CLOUDINARY_API_SECRET).digest("hex")
+    check("upload signature matches Cloudinary's rule", t.signature === expected)
+  }
+
+  const cloud = t.uploadUrl.split("/v1_1/")[1].split("/")[0]
+  const ref = (folder, name, host = "res.cloudinary.com") => ({
+    publicId: `${folder}/${name}`,
+    url: `https://${host}/${cloud}/image/upload/v1700000000/${folder}/${name}.jpg`,
+    width: 1200,
+    height: 800,
+  })
+  const a = `a${stamp}`, b = `b${stamp}`, c = `c${stamp}`
+
+  const two = await call("POST", "/api/insights", { token: adminToken, body: { body: "With two photos", images: [ref(t.folder, a), ref(t.folder, b)] } })
+  check("post with two images", two.status === 201 && two.data.item.images.length === 2, JSON.stringify(two.data))
+  check("images keep their order", two.data.item?.images[0].url.includes(a) && two.data.item?.images[1].url.includes(b))
+  const only = await call("POST", "/api/insights", { token: adminToken, body: { images: [ref(t.folder, c)] } })
+  check("image-only post works", only.status === 201 && only.data.item.body === "" && only.data.item.images.length === 1, JSON.stringify(only.data))
+  check("no text and no image is rejected", (await call("POST", "/api/insights", { token: adminToken, body: { body: "  ", images: [] } })).status === 400)
+  const five = Array.from({ length: 5 }, (_, i) => ref(t.folder, `five${stamp}${i}`))
+  check("more than 4 images is rejected", (await call("POST", "/api/insights", { token: adminToken, body: { body: "x", images: five } })).status === 400)
+  check("someone else's folder is rejected", (await call("POST", "/api/insights", { token: adminToken, body: { body: "x", images: [ref(t.folder.replace(adminId, "someone-else"), "z")] } })).status === 400)
+  check("a non-Cloudinary address is rejected", (await call("POST", "/api/insights", { token: adminToken, body: { body: "x", images: [ref(t.folder, `h${stamp}`, "evil.example.com")] } })).status === 400)
+  check("reusing an uploaded image is rejected", (await call("POST", "/api/insights", { token: adminToken, body: { body: "again", images: [ref(t.folder, a)] } })).status === 409)
+
+  const feed = await call("GET", "/api/insights?limit=5")
+  check("feed includes images", feed.data.items.some((i) => i.id === two.data.item.id && i.images.length === 2))
+  check("a text-only post has an empty image list", (await call("GET", `/api/insights/${adminPost.id}`)).data.item?.images?.length === 0)
+
+  check("an image post can have its text cleared", (await call("PATCH", `/api/insights/${only.data.item.id}`, { token: adminToken, body: { body: "" } })).status === 200)
+  const plain = await call("POST", "/api/insights", { token: adminToken, body: { body: "plain" } })
+  check("a text-only post cannot be emptied", (await call("PATCH", `/api/insights/${plain.data.item.id}`, { token: adminToken, body: { body: "" } })).status === 400)
+
+  check("deleting a post with images works", (await call("DELETE", `/api/insights/${two.data.item.id}`, { token: adminToken })).status === 200)
+  check("deleted post is gone", (await call("GET", `/api/insights/${two.data.item.id}`)).status === 404)
+  await call("DELETE", `/api/insights/${only.data.item.id}`, { token: adminToken })
+  await call("DELETE", `/api/insights/${plain.data.item.id}`, { token: adminToken })
+}
+
 console.log(failed ? `\n${failed} check(s) FAILED` : "\nAll checks passed")
 process.exit(failed ? 1 : 0)

@@ -28,7 +28,7 @@ export default function InsightPost() {
 
   const current = state?.id === id ? state : null
   const item = current?.item ?? null
-  usePageTitle(item ? `${item.author.name}: ${item.body.slice(0, 60)} | AstroVexus` : "Insight | AstroVexus")
+  usePageTitle(item ? `${item.author.name}: ${item.body.slice(0, 60) || "Photo"} | AstroVexus` : "Insight | AstroVexus")
 
   return (
     <section className="wrap pt-12 pb-20 md:pt-20 md:pb-28">

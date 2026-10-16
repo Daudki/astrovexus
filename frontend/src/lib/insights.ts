@@ -1,12 +1,26 @@
+export interface InsightImage {
+  id: string
+  url: string
+  width: number
+  height: number
+}
+
 export interface Insight {
   id: string
   body: string
+  images: InsightImage[]
   createdAt: string
   updatedAt: string | null
   author: { id: string; name: string }
 }
 
 export const MAX_POST_LENGTH = 2000
+export const MAX_IMAGES = 4
+
+/** Asks Cloudinary for a smaller, modern-format copy (JPEG, WebP or AVIF as the browser supports). */
+export function sizedImage(url: string, width: number) {
+  return url.replace("/image/upload/", `/image/upload/f_auto,q_auto,w_${width},c_limit/`)
+}
 
 export function timeAgo(iso: string, now = Date.now()) {
   const then = new Date(iso)

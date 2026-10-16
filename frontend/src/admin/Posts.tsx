@@ -35,7 +35,7 @@ function Editor({ item, onSaved, onCancel }: { item: Insight; onSaved: (i: Insig
       />
       {error && <div role="alert" className="mt-2 text-sm text-red-700">{error}</div>}
       <div className="mt-3 flex items-center gap-3">
-        <button type="button" onClick={save} disabled={busy || !text.trim() || text.length > MAX_POST_LENGTH} className="h-9 px-5 rounded-full bg-ink text-white text-sm font-medium hover:bg-royal transition-colors disabled:opacity-40">
+        <button type="button" onClick={save} disabled={busy || (!text.trim() && item.images.length === 0) || text.length > MAX_POST_LENGTH} className="h-9 px-5 rounded-full bg-ink text-white text-sm font-medium hover:bg-royal transition-colors disabled:opacity-40">
           {busy ? "Saving..." : "Save"}
         </button>
         <button type="button" onClick={onCancel} disabled={busy} className="text-sm text-black/60 hover:text-ink">Cancel</button>

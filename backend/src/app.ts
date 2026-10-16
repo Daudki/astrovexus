@@ -7,6 +7,7 @@ import { errorHandler } from "./lib/http.js"
 import { subscribeRouter } from "./routes/subscribe.js"
 import { authRouter } from "./routes/auth.js"
 import { insightsRouter } from "./routes/insights.js"
+import { uploadsRouter } from "./routes/uploads.js"
 import { adminRouter } from "./routes/admin.js"
 
 const app = express()
@@ -37,6 +38,7 @@ app.use(async (_req, _res, next) => {
 app.use("/api", subscribeRouter)
 app.use("/api", authRouter)
 app.use("/api", insightsRouter)
+app.use("/api", uploadsRouter)
 app.use("/api", adminRouter)
 
 app.use((_req, res) => {

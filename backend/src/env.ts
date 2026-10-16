@@ -19,6 +19,12 @@ const schema = z.object({
   JWT_SECRET: z.string().optional().default(""),
   JWT_EXPIRES_IN: z.string().default("12h"),
 
+  // Image uploads (Cloudinary). Leave empty to turn image uploads off.
+  CLOUDINARY_CLOUD_NAME: z.string().optional().default(""),
+  CLOUDINARY_API_KEY: z.string().optional().default(""),
+  CLOUDINARY_API_SECRET: z.string().optional().default(""),
+  CLOUDINARY_FOLDER: z.string().default("astrovexus/insights"),
+
   // Used once, to create the first admin when the users table is empty.
   ADMIN_EMAIL: z.string().optional().default(""),
   ADMIN_NAME: z.string().optional().default("Admin"),

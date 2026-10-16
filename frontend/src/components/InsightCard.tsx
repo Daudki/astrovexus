@@ -2,6 +2,7 @@ import type { ReactNode } from "react"
 import { Link } from "react-router-dom"
 import { fullDate, initials, timeAgo, type Insight } from "@/lib/insights"
 import { PostBody } from "@/components/PostBody"
+import { ImageGrid } from "@/components/ImageGrid"
 
 export function InsightCard({ item, actions, large = false }: { item: Insight; actions?: ReactNode; large?: boolean }) {
   return (
@@ -17,7 +18,8 @@ export function InsightCard({ item, actions, large = false }: { item: Insight; a
           </Link>
           {item.updatedAt && <span className="text-black/35" title={fullDate(item.updatedAt)}>edited</span>}
         </div>
-        <PostBody body={item.body} className={`mt-1 ${large ? "text-lg sm:text-xl" : "text-[15px] sm:text-base"}`} />
+        {item.body && <PostBody body={item.body} className={`mt-1 ${large ? "text-lg sm:text-xl" : "text-[15px] sm:text-base"}`} />}
+        {item.images.length > 0 && <ImageGrid images={item.images} author={item.author.name} />}
         {actions && <div className="mt-3 flex items-center gap-4 text-sm text-black/50">{actions}</div>}
       </div>
     </article>
