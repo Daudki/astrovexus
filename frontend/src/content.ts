@@ -45,12 +45,13 @@ export const services = [
 
 export const founders = [
   {
-    name: "Daudi Kisulo",
+    name: "Daud Kisulo",
     role: "Programmer",
     initials: "DK",
-    photo: "/team/daudi.jpg",
+    photo: "/team/daud.jpg",
     skills: ["Linux", "Web development", "AI & machine learning"],
     bio: "I write code. Linux is my daily environment, web development is my craft, and AI and machine learning are what I am learning next. I am not the finished article. I am still learning, and I say so.",
+    portfolio: "https://daudki.vercel.app",
   },
   {
     name: "Mike Milan",
@@ -59,6 +60,7 @@ export const founders = [
     photo: "/team/mike.jpg",
     skills: ["Graphic design", "Web design", "AI training", "Digital skills"],
     bio: "I do graphic design and web design, I have experience training AI, and I work in affiliate marketing and digital skills. Good design is how a business earns trust before it says a word.",
+    portfolio: "",
   },
 ]
 

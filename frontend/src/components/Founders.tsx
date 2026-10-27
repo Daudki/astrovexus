@@ -47,7 +47,7 @@ export function Founders() {
 
                 <p className="text-black/65 leading-relaxed mb-6">{f.bio}</p>
 
-                <ul className="flex flex-wrap gap-2">
+                <ul className="flex flex-wrap gap-2 mb-6"> {/* Added mb-6 here for spacing */}
                   {f.skills.map((s) => (
                     <li
                       key={s}
@@ -57,6 +57,22 @@ export function Founders() {
                     </li>
                   ))}
                 </ul>
+
+                {/* ADDED PORTFOLIO LINK HERE */}
+                {f.portfolio && (
+                  <a
+                    href={f.portfolio}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-royal hover:text-ink transition-colors"
+                  >
+                    View my profile
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                )}
+
               </div>
             </article>
           </BlurFade>
