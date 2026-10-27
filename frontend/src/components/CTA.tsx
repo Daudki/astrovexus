@@ -5,7 +5,7 @@ import { studio } from "@/content"
 
 export function CTA() {
   return (
-    <section className="bg-royal text-white relative overflow-hidden">
+    <section className="theme-fixed bg-royal text-white relative overflow-hidden">
       <div className="wrap py-16 sm:py-20 md:py-24 lg:py-32 relative z-10">
         <div className="max-w-3xl">
           <h2 className="font-display font-extrabold text-3xl md:text-5xl leading-tight">

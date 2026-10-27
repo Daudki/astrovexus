@@ -27,13 +27,73 @@ body {
 }
 body {
   font-family: var(--font-body);
-  background: #ffffff;
+  background: var(--color-white);
   color: var(--color-ink);
   line-height: 1.6;
 }
 ::selection {
   background: var(--color-royal);
-  color: white;
+  color: var(--color-white);
+}
+
+/* ---------- Themes ----------
+   Every utility the site uses (bg-white, text-ink, text-black/60, border-black/10, text-royal ...) reads
+   these colour variables, so redefining them re-colours the whole site at once.
+   In the dark themes, "white" means the page background and "black" means the text and border colour.
+   Light is the default and needs no overrides. The choice is set on <html data-theme="...">. */
+/* Browsers too old for color-mix() (some older Android browsers) can't recolour the translucent text and
+   borders, so they keep the light theme and the toggle is hidden for them. */
+.theme-toggle {
+  display: none;
+}
+@supports (color: color-mix(in oklab, red, red)) {
+  .theme-toggle {
+    display: block;
+  }
+
+  :root[data-theme="dark"] {
+    --color-white: #11131b;
+    --color-black: #ffffff;
+    --color-ink: #f4f4fb;
+    --color-royal: #8f8bff;
+    --color-light: #232636;
+    --color-red-50: #2b1519;
+    --color-red-200: #7a2e35;
+    --color-red-700: #fca5a5;
+    --color-green-50: #10281b;
+    --color-green-200: #25603f;
+    --color-green-800: #86efac;
+    --color-amber-50: #2b2311;
+    --color-amber-700: #fcd34d;
+  }
+  /* Night: true black for OLED screens, and warmer, softer text to be gentler in a dark room. */
+  :root[data-theme="night"] {
+    --color-white: #000000;
+    --color-black: #f4f0e7;
+    --color-ink: #f0ece2;
+    --color-royal: #a19cf7;
+    --color-light: #15161c;
+    --color-red-50: #1c0b0e;
+    --color-red-200: #5c242a;
+    --color-red-700: #f8a4a4;
+    --color-green-50: #07170f;
+    --color-green-200: #1b4a30;
+    --color-green-800: #7de8a8;
+    --color-amber-50: #1c1608;
+    --color-amber-700: #f2c94c;
+  }
+  /* Parts that keep the same colours in every theme: footer, call-to-action band, image viewer, WhatsApp button. */
+  .theme-fixed {
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-ink: #0b0a1c;
+    --color-royal: #322cde;
+    --color-red-700: oklch(50.5% 0.213 27.518);
+  }
+  :root[data-theme="dark"] footer,
+  :root[data-theme="night"] footer {
+    border-top: 1px solid rgb(255 255 255 / 0.08);
+  }
 }
 
 /* ---------- Typography helpers ---------- */

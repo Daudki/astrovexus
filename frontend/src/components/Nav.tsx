@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import { nav, studio } from "@/content"
+import { ThemeToggle } from "@/components/ThemeToggle"
 
 export function Nav() {
   const [open, setOpen] = useState(false)
@@ -29,6 +30,7 @@ export function Nav() {
               {n.label}
             </Link>
           ))}
+          <ThemeToggle />
           <Link
             to="/contact"
             className="px-5 py-2.5 rounded-full bg-ink text-white text-sm font-medium hover:bg-royal transition-colors"
@@ -37,13 +39,17 @@ export function Nav() {
           </Link>
         </nav>
 
-        <button
-          className="md:hidden p-1 text-ink"
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="md:hidden flex items-center gap-1">
+          <ThemeToggle />
+          <button
+            className="grid size-10 place-items-center text-ink"
+            onClick={() => setOpen(!open)}
+            aria-label="Menu"
+            aria-expanded={open}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {open && (

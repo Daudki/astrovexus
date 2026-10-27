@@ -3,7 +3,7 @@ import { nav, studio } from "@/content"
 
 export function Footer() {
   return (
-    <footer className="bg-ink text-white/70">
+    <footer className="theme-fixed bg-ink text-white/70">
       <div className="wrap py-16 md:py-20 grid gap-12 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2.5 mb-5">

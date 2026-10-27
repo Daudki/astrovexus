@@ -104,7 +104,7 @@ export function NewsletterSignup() {
                     checked={lang === l}
                     onChange={() => setLang(l)}
                     disabled={busy}
-                    className="accent-[#322CDE]"
+                    className="accent-royal"
                   />
                   {l === "en" ? "English" : "Kiswahili"}
                 </label>

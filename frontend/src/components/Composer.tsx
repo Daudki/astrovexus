@@ -141,9 +141,9 @@ export function Composer({ authorName, onPosted }: Props) {
                   </span>
                 )}
                 {a.status === "error" && (
-                  <span className="absolute inset-x-0 bottom-0 bg-red-700/90 px-2 py-1 text-[11px] leading-tight text-white">{a.error}</span>
+                  <span className="theme-fixed absolute inset-x-0 bottom-0 bg-red-700/90 px-2 py-1 text-[11px] leading-tight text-white">{a.error}</span>
                 )}
-                <button type="button" onClick={() => removeAttachment(a.key)} aria-label="Remove image" className="absolute top-1 right-1 size-6 grid place-items-center rounded-full bg-black/60 text-white hover:bg-black/80">
+                <button type="button" onClick={() => removeAttachment(a.key)} aria-label="Remove image" className="theme-fixed absolute top-1 right-1 size-6 grid place-items-center rounded-full bg-black/60 text-white hover:bg-black/80">
                   <X size={14} />
                 </button>
               </li>

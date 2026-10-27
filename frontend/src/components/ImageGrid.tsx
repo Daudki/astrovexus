@@ -17,7 +17,7 @@ function Lightbox({ images, start, alt, onClose }: { images: InsightImage[]; sta
   }, [images.length, onClose])
 
   return (
-    <div role="dialog" aria-modal="true" aria-label="Image viewer" className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4" onClick={onClose}>
+    <div role="dialog" aria-modal="true" aria-label="Image viewer" className="theme-fixed fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4" onClick={onClose}>
       <button type="button" onClick={onClose} aria-label="Close" autoFocus className="absolute top-4 right-4 size-10 grid place-items-center rounded-full bg-white/10 text-white hover:bg-white/20">
         <X size={20} />
       </button>
